@@ -4,25 +4,35 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="LIBRO",catalog = "ejercicio1")
+@Table(name="LIBROS", catalog="ejercicio1", uniqueConstraints = 
+	{@UniqueConstraint(columnNames="ISBN")})
 public class Libro implements Serializable{
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	@Id
-	@Column(name="ISBN", unique = true, nullable = false)
+	//@GeneratedValue
+	@Column(name="ISBN",unique=true,nullable=false)
 	private String isbn;
+	
 	@Column(name="AUTOR")
 	private String autor;
-	@Column(name="TITULO", unique = true, nullable = false)
+	
+	@Column(name="TITULO",unique=true,nullable=false)
 	private String titulo;
+	
 	@Column(name="PRESTADO")
 	private byte prestado;
-	
+		
 	public Libro(String isbn, String autor, String titulo, byte prestado) {
 		super();
 		this.isbn = isbn;
